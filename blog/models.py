@@ -9,7 +9,7 @@ class Post(models.Model):
     # category
     # author
     counted_view = models.IntegerField(default=0)
-    status = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True)
