@@ -14,7 +14,8 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title',
                     'counted_view',
                     'is_published',
-                    'created_at')
+                    'created_at',
+                    'published_date')
     
     list_filter = ('is_published', )
     
