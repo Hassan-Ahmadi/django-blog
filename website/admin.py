@@ -6,6 +6,6 @@ from .models import Contact
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message', 'created_at')
-    ordering = ('-created_at',)
-    search_fields = ('subject', 'message')
-    
+    # date_hierarchy = ('-created_at',)
+    search_fields = ('subject', 'message', 'name')
+    list_filter = ('email',)
