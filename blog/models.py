@@ -12,7 +12,8 @@ class Post(models.Model):
     is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    published_date = models.DateTimeField(null=True)
+    published_date = models.DateTimeField(null=True, blank=True)
+    read_duration_minutes = models.DurationField(null=True, blank=True)
     
     class Meta:
         ordering = ['-created_at']
