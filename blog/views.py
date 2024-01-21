@@ -17,3 +17,6 @@ def blog_single(request, pid: int):
     post.save()
     context = {'post': post}
     return render(request, 'blog/blog-single.html', context)
+
+def test_view(request):
+    return render(request, 'website/404-page.html')

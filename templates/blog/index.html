@@ -9,10 +9,10 @@
           <h1 class="section-title h2 mb-3"><span>همه پست ها</span></h1>
           <ul class="list-inline breadcrumb-menu mb-3">
             <li class="list-inline-item">
-              <a href="index.html"><i class="ti ti-home"></i> <span>خانه</span></a>
+              <a href="{% url 'blog:index' %}"><i class="ti ti-home"></i> <span>خانه</span></a>
             </li>
             <li class="list-inline-item">
-              • &nbsp; <a href="blog.html"><span>همه پست ها</span></a>
+              • &nbsp; <a href="{% url 'blog:index' %}"><span>همه پست ها</span></a>
             </li>
           </ul>
         </div>
@@ -41,7 +41,7 @@
                     <span>{{ post.read_duration_minutes }} دقیقه خوانش</span>
                   </li>
                 </ul>
-                <a class="d-block" href="blog-single.html" title={{ post.title }}><h3 class="mb-3 post-title">{{ post.title }}</h3></a>
+                <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}><h3 class="mb-3 post-title">{{ post.title }}</h3></a>
                 <p>{{ post.content | truncatewords:40 | linebreaks }}</p>
               </div>
               <div class="card-footer border-top-0 bg-transparent p-0">

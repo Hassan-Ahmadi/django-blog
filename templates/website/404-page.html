@@ -1,30 +1,29 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
 
  
-<!-- => ALDev @ market.radib.com <= about.html => Uploaded at Radib File Markket <=  [XR&CO'2014], Sat, 29 Jan 2022 11:37:24 GMT -->
+<!-- => ALDev @ market.radib.com <= 404-page.html => Uploaded at Radib File Markket <=  [XR&CO'2014], Sat, 29 Jan 2022 11:37:26 GMT -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /> 
 <head>
   <meta charset="utf-8">
-  <title>کورنو - بلاگ تکنولوژی </title>
+  <title>کورنو - قالب بلاگ مینیمال اچ تی ام ال </title>
 
   <meta name="author" content="Platol">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="Minimal Blog HTML Template">
 
-  <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
   <!-- CSS Plugins -->
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crete+Round&amp;family=Work+Sans:wght@500;600&amp;display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css'%}">
-  <link rel="stylesheet" href="{% static 'plugins/tabler-icons/tabler-icons.min.css'%}">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/tabler-icons/tabler-icons.min.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -36,7 +35,7 @@
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <!-- logo -->
           <a class="navbar-brand font-weight-bold mb-0" href="index.html" title="Qurno">
-            <img class="img-fluid" width="110" height="35" src="{% static 'assets/images/logo.png' %}" alt="Qurno">
+            <img class="img-fluid" width="110" height="35" src="assets/images/logo.png" alt="Qurno">
           </a>
 
           <button class="search-toggle d-inline-block d-lg-none me-auto ms-1 ms-sm-3" data-toggle="search" aria-label="Search Toggle">
@@ -52,7 +51,7 @@
           <div class="collapse navbar-collapse" id="navHeader">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item @@home">
-                <a class="nav-link" href="{% url 'blog:index' %}">خانه</a>
+                <a class="nav-link" href="index.html">خانه</a>
               </li>
               <li class="nav-item @@about">
                 <a class="nav-link" href="about.html">درباره ما</a>
@@ -61,12 +60,12 @@
                 <a class="nav-link" href="elements.html">عناصر</a>
               </li>
               <li class="nav-item @@archive">
-                <a class="nav-link" href="archive.html">بلاگ</a>
+                <a class="nav-link" href="archive.html">آرشیو</a>
               </li>
               <li class="nav-item @@contact">
                 <a class="nav-link" href="contact.html">ارتباط با ما</a>
               </li>
-              {% comment %} <li class="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحات</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="author.html">نویسنده</a></li>
@@ -78,7 +77,7 @@
                   <li><a class="dropdown-item" href="404-page.html">خطا 404</a></li>
                   <li><a class="dropdown-item" href="privacy.html">حریم شخصی</a></li>
                 </ul>
-              </li> {% endcomment %}
+              </li>
             </ul>
             
             <div class="navbar-right d-none d-lg-inline-block">
@@ -91,7 +90,7 @@
                 </li>
               </ul>
             </div>
-
+            
           </div>
         </nav>
       </div>
@@ -99,7 +98,6 @@
   </div>
 </header>
 
-<!-- Search bar -->
 <div class="search-block">
   <div data-toggle="search-close">
     <span class="ti ti-x text-primary"></span>
@@ -146,13 +144,20 @@
     </ul>
   </div>
 </div>
-<!-- End Search bar -->
-{% block navbar %}
-{% endblock navbar %}
 
-{% block content %}
-{% endblock content %}
-
+<section class="section-sm pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">
+          <h1 class="page-not-found-title">404</h1>
+          <p class="mb-4">اوه صفحه ای که دنبال آن هستید وجود ندارد</p>
+          <a href="index.html" class="btn btn-primary">بازگشت به خانه</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- start of footer -->
 <footer>
@@ -183,7 +188,8 @@
         </div>
         <div class="col-lg-6 text-center text-lg-start">
           <ul class="list-inline footer-menu">
-            <li class="list-inline-item m-0"><a href="http://hassan-ahmadi.ir">تماس با من</a></li>            
+            <li class="list-inline-item m-0"><a href="privacy.html">حریم شخصی</a></li>
+            <li class="list-inline-item m-0"><a href="404-page.html">خطا 404</a></li>
           </ul>
         </div>
       </div>
@@ -193,13 +199,13 @@
 <!-- end of footer -->
 
 <!-- JS Plugins -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
-<script src="{% static 'plugins/lightense/lightense.min.js' %}"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/lightense/lightense.min.js"></script>
 
 <!-- Main Script -->
-<script src="{% static 'assets/js/script.js' %}"></script>
+<script src="assets/js/script.js"></script>
 
 </body>
-<!-- => ALDev @ market.radib.com <= about.html => Uploaded at Radib File Markket <=  [XR&CO'2014], Sat, 29 Jan 2022 11:37:25 GMT -->
+<!-- => ALDev @ market.radib.com <= 404-page.html => Uploaded at Radib File Markket <=  [XR&CO'2014], Sat, 29 Jan 2022 11:37:26 GMT -->
 </html>
