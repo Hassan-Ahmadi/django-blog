@@ -29,7 +29,14 @@
           <div class="col-lg-6">
             <article class="card post-card h-100 border-0 bg-transparent">
               <div class="card-body">
-                <a class="d-block" href="blog-single.html" title={{ post.title }}></a>
+                <a class="d-block" href="{% url 'blog:single' pid=post.id%}" title={{ post.title }}></a>
+
+                <a class="d-block" href="{% url 'blog:single' pid=post.id%}" title={{ post.title }}>
+                  <div class="post-image position-relative">
+                    <img class="w-100 h-auto rounded" src={{ post.image.url }} alt={{ post.title }} width="970" height="500">
+                  </div>
+                </a>
+
                 <ul class="card-meta list-inline mb-3">
                   <li class="list-inline-item mt-2">
                     <i class="ti ti-calendar-event"></i>
@@ -49,14 +56,41 @@
                   <li class="list-inline-item mt-2">
                     <a href="author-single.html" class="card-meta-author">
                       توسط 
-                      <span>ناشناس</span>
+                      <span>{{ post.author.get_full_name}}</span>
                     </a>
                   </li>
                   </li>
-                  <li class="list-inline-item mt-2">—</li>
+                  <li class="list-inline-item mt-2">•</li>
                   <li class="list-inline-item mt-2"> {{ post.counted_view }} بازدید</li>
+                  <li class="list-inline-item mt-2">•</li>
+                  <li class="list-inline-item mt-2">
+                    <ul class="card-meta-tag list-inline">
+                      {% for category in post.category.all %}
+                        <li class="list-inline-item small"><a href="#">{{ category.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  
                 </ul>
               </div>
+
+              {% comment %} <div class="card-footer border-top-0 bg-transparent p-0">
+                <ul class="card-meta list-inline">
+                  <li class="list-inline-item mt-2">
+                    <a href="author-single.html" class="card-meta-author" title="خواندن پست نوشته شده توسط -  کریس ایپلی">
+                      <img class="w-auto" src="assets/images/author/chris-impey.jpg" alt=" کریس ایپلی" width="26" height="26"> توسط <span>کریس</span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item mt-2">•</li>
+                  <li class="list-inline-item mt-2">
+                    <ul class="card-meta-tag list-inline">
+                      <li class="list-inline-item small"><a href="tag-single.html">سبک زندگی</a></li>
+                      <li class="list-inline-item small"><a href="tag-single.html">استارت اپ</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div> {% endcomment %}
+
             </article>
           </div>
         

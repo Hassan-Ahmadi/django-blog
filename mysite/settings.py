@@ -38,9 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # added lib apps
+    # 'django_resized',
+    
     # my apps
     'blog.apps.BlogConfig',
     'website.apps.WebsiteConfig'
+    
+    
 ]
 
 MIDDLEWARE = [
