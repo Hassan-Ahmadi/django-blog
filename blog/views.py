@@ -9,29 +9,30 @@ def blog_view(request):
     
     posts = Post.objects.filter(published_date__lte=timezone.now(), is_published=True)
     context = {'posts': posts}    
-    return render(request, 'blog/index.html', context)
+    return render(request, 'blog/blogs.html', context)
 
 def blog_single(request, pid: int):
     context = {}
-    
-    post = get_object_or_404(Post, pk=pid)
+    posts = Post.objects.filter(pk=pid, is_published=True)
+    post = get_object_or_404(posts)
     post.counted_view += 1
     post.save()
     
     try:
-        next_post = Post.objects.get(id=pid + 1)
-        
-        if not next_post.is_published:
-            next_post = None
+        next_post = Post.objects.filter(id__gt=post.id, is_published=True, published_date__lte=timezone.now()).order_by('id').first()
+        if next_post:                
+            if not next_post.is_published:
+                next_post = None
             
     except Post.DoesNotExist:
         next_post = None
         
     try:        
-        pre_post = Post.objects.get(id=pid-1)        
+        pre_post = Post.objects.filter(id__lt=post.id, is_published=True, published_date__lte=timezone.now()).order_by('-id').first()
         
-        if not pre_post.is_published:
-            pre_post = None
+        if pre_post:
+            if not pre_post.is_published:
+                pre_post = None
             
     except Post.DoesNotExist:
         pre_post = None

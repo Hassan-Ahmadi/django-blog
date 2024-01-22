@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+  <section class="page-header section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="section-title h2 mb-3"><span>ارتباط با ما</span></h1>
+          <ul class="list-inline breadcrumb-menu mb-3">
+            <li class="list-inline-item">
+              <a href="{% url 'website:index' %}"><i class="ti ti-home"></i> <span>خانه</span></a>
+            </li>
+            <li class="list-inline-item">
+              • &nbsp; <a href="{% url 'website:about' %}"><span>ارتباط با ما</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <section>
+    <div class="container">
+      <div class="row gy-5 justify-content-center">
+        <div class="col-lg-5 col-md-10 me-lg-auto me-lg-0 me-auto">
+          <div class="mb-5">
+            <h2 class="h3 mb-3">ارتباط با تیم ما</h2>
+            <p class="mb-0">من؛ در اینجا برای کمک به هر گونه سوال که ممکن است داشته باشید هستم. منتظر شنیدن از شما هستم</p>
+          </div>
+          <div>
+            <h2 class="h4 mb-3">خسته از فرم پر کردنید؟ <br />یک ایمیل بنویسید یا یک تماس بگیرید</h2>
+            <p class="mb-2 content">
+              <i class="ti ti-mail-forward ms-2 d-inline-block mb-0" style="transform: translateY(2px)"></i>
+              <a href="mailto:{{ email }}">{{ email }}</a>
+            </p>
+
+            <p class="mb-0 content">
+              <span>{{ phone }}</span> <i class="ti ti-phone ms-2"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-5 ms-lg-auto ms-lg-0 ms-auto">
+          <h2 class="h3 mb-4">فرم تماس</h2>
+
+          <form class="row g-4" action="#!" method="post">
+            <div class="col-md-12">
+              <textarea class="form-control" placeholder="سوال بپرسید یا فقط بگو سلام" rows="4" name="message" required></textarea>
+            </div>
+            <div class="col-md-12">
+              <input type="email" class="form-control" placeholder="آدرس ایمیل" name="email" required />
+            </div>
+            <div class="col-md-12">
+              <input type="text" class="form-control" placeholder="نام شما اینجاست" name="name" required />
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" aria-label="پیام فرستادن">ارسال <i class="ti ti-brand-telegram me-1"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

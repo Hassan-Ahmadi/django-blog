@@ -35,7 +35,7 @@
       <div class="col-12">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
           <!-- logo -->
-          <a class="navbar-brand font-weight-bold mb-0" href="{% url 'blog:index' %}" title="Qurno">
+          <a class="navbar-brand font-weight-bold mb-0" href="{% url 'website:index' %}" title="Qurno">
             <img class="img-fluid" width="110" height="35" src="{% static 'assets/images/logo.png' %}" alt="Qurno">
           </a>
 
@@ -52,19 +52,16 @@
           <div class="collapse navbar-collapse" id="navHeader">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item @@home">
-                <a class="nav-link" href="{% url 'blog:index' %}">خانه</a>
+                <a class="nav-link" href="{% url 'website:index' %}">خانه</a>
               </li>
               <li class="nav-item @@about">
-                <a class="nav-link" href="about.html">درباره ما</a>
-              </li>
-              <li class="nav-item @@elements">
-                <a class="nav-link" href="elements.html">عناصر</a>
-              </li>
+                <a class="nav-link" href="{% url 'website:about' %}">درباره ما</a>
+              </li>              
               <li class="nav-item @@archive">
-                <a class="nav-link" href="archive.html">بلاگ</a>
+                <a class="nav-link" href="{% url 'blog:index' %}">بلاگ</a>
               </li>
               <li class="nav-item @@contact">
-                <a class="nav-link" href="contact.html">ارتباط با ما</a>
+                <a class="nav-link" href="{% url 'website:contact' %}">ارتباط با ما</a>
               </li>
               {% comment %} <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحات</a>
@@ -181,11 +178,12 @@
         <div class="col-lg-6 text-center text-lg-end">
           <p class="mb-0 copyright-text content">&copy; 1400 کورنو . همه حقوق محفوظ است .</p>
         </div>
-        <div class="col-lg-6 text-center text-lg-start">
+        
+        {% comment %} <div class="col-lg-6 text-center text-lg-start">
           <ul class="list-inline footer-menu">
             <li class="list-inline-item m-0"><a href="http://hassan-ahmadi.ir">تماس با من</a></li>            
           </ul>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div>
   </div>
