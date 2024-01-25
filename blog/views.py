@@ -1,15 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Category
 from django.utils import timezone
 
 # import datetime
 # Create your views here.
 
 
-def blog_view(request):
+def blog_view(request, cat_name=None):
     # posts = Post.objects.filter(is_published=True)
-
     posts = Post.objects.filter(published_date__lte=timezone.now(), is_published=True)
+    if cat_name:
+        posts = posts.filter(category__name=cat_name)
     context = {"posts": posts}
     return render(request, "blog/blogs.html", context)
 
@@ -58,5 +59,28 @@ def blog_single(request, pid: int):
     return render(request, "blog/blog-single.html", context)
 
 
+def single_category_view(request, cat_name):
+    posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
+    posts = posts.filter(category__name=cat_name)
+    context = {"posts": posts}
+
+    return render(request, "blog/category-single.html", context)
+
+
+def categories_view(request):
+    posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
+    categories = Category.objects.all()
+    categories_count = {}
+    for category in categories:
+        counted_categ = posts.filter(category__name=category.name).count()
+        if counted_categ:
+            categories_count[category.name] = posts.filter(
+                category__name=category.name
+            ).count()
+
+    context = {"categories": categories_count}
+    return render(request, "blog/categories.html", context)
+
+
 def test_view(request):
-    return render(request, "website/404-page.html")
+    return render(request, "blog/test.html")

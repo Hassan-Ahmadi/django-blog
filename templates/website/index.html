@@ -65,7 +65,7 @@
                     <li class="list-inline-item mt-2">
                       
                       <i class="ti ti-clock"></i>
-                      <span>{{ post.read_duration_minutes | }} دقیقه خوانش</span>
+                      <span>{{ post.read_duration_minutes }} دقیقه خوانش</span>
                     </li>
                   {% endif %}
                 </ul>
@@ -86,7 +86,7 @@
                   <li class="list-inline-item mt-2">
                     <ul class="card-meta-tag list-inline">
                       {% for category in post.category.all %}
-                        <li class="list-inline-item small"><a href="#">{{ category.name }}</a></li>
+                        <li class="list-inline-item small"><a href="{% url 'blog:category' cat_name=category.name %}">{{ category.name }}</a></li>
                       {% endfor %}
                     </ul>
                   </li>

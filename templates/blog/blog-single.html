@@ -67,7 +67,7 @@
         <ul class="post-meta-tag list-unstyled list-inline mt-5">
           <li class="list-inline-item"> دسته بندی ها: </li>
           {% for category in post.category.all %}
-            <li class="list-inline-item"><a class="bg-white" href="#">{{ category.name }}</a></li>
+            <li class="list-inline-item"><a href="{% url 'blog:category' cat_name=category.name %}">{{ category.name }}</a></li>
           {% endfor %}
         </ul>
       </div>

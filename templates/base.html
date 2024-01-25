@@ -63,19 +63,14 @@
               <li class="nav-item @@contact">
                 <a class="nav-link" href="{% url 'website:contact' %}">ارتباط با ما</a>
               </li>
-              {% comment %} <li class="nav-item dropdown">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحات</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="author.html">نویسنده</a></li>
-                  <li><a class="dropdown-item" href="author-single.html">جزییات نویسنده</a></li>
-                  <li><a class="dropdown-item" href="tags.html">برچسب‌ها</a></li>
-                  <li><a class="dropdown-item" href="tag-single.html">جزییات برچسب‌ها </a></li>
-                  <li><a class="dropdown-item" href="categories.html">دسته‌بندی‌ها</a></li>
-                  <li><a class="dropdown-item" href="categories-single.html">جزییات دسته‌بندی‌ها</a></li>
-                  <li><a class="dropdown-item" href="404-page.html">خطا 404</a></li>
-                  <li><a class="dropdown-item" href="privacy.html">حریم شخصی</a></li>
+                  {% comment %} <li><a class="dropdown-item" href="#">نویسنده ها</a></li>                   {% endcomment %}
+                  {% comment %} <li><a class="dropdown-item" href="#">برچسب‌ها</a></li> {% endcomment %}
+                  <li><a class="dropdown-item" href="{% url 'blog:categories' %}">دسته‌بندی‌ها</a></li>                  
                 </ul>
-              </li> {% endcomment %}
+              </li>
             </ul>
             
             <div class="navbar-right d-none d-lg-inline-block">
