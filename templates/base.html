@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -66,7 +67,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحات</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% comment %} <li><a class="dropdown-item" href="#">نویسنده ها</a></li>                   {% endcomment %}
+                  <li><a class="dropdown-item" href="#">نویسنده ها</a></li>
                   {% comment %} <li><a class="dropdown-item" href="#">برچسب‌ها</a></li> {% endcomment %}
                   <li><a class="dropdown-item" href="{% url 'blog:categories' %}">دسته‌بندی‌ها</a></li>                  
                 </ul>
@@ -93,52 +94,30 @@
 
 <!-- Search bar -->
 <div class="search-block">
+  
   <div data-toggle="search-close">
     <span class="ti ti-x text-primary"></span>
   </div>
+  <form method="get" action="{% url 'blog:search' %}">
+    <input type="text" id="js-search-input" name="s" placeholder="تایپ کنید دنبال چه هستید..." aria-label="search-query">    
+  </form>
   
-  <input type="text" id="js-search-input" placeholder="تایپ کنید دنبال چه هستید..." aria-label="search-query">
-
   <div class="mt-4 card-meta">
     <p class="h4 mb-3">دیدن پست ها بر اساس برچسب</p>
     <ul class="card-meta-tag list-inline">
+      {% comment %} {% for  in  %} {% endcomment %}
       <li class="list-inline-item me-1 mb-2">
         <a class="small" href="tag-single.html">زندگی</a>
       </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">سبک زندگی</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">آگاهی</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">ماشین</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">استارت اپ</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="tag-single.html">کار</a>
-      </li>
+      {% comment %} {% endfor %} {% endcomment %}
     </ul>
   </div>
 
-  <div class="mt-4 card-meta">
-    <p class="h4 mb-3">دیدن پست بر اساس دسته‌بندی</p>
-    <ul class="card-meta-tag list-inline">
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">هوش مصنوعی</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">زمین</a>
-      </li>
-      <li class="list-inline-item me-1 mb-2">
-        <a class="small" href="categorie-single.html">تکنولوژی</a>
-      </li>
-    </ul>
-  </div>
+  {% search_by_categories %}
+
 </div>
 <!-- End Search bar -->
+
 {% block navbar %}
 {% endblock navbar %}
 
@@ -174,11 +153,6 @@
           <p class="mb-0 copyright-text content">&copy; 1400 کورنو . همه حقوق محفوظ است .</p>
         </div>
         
-        {% comment %} <div class="col-lg-6 text-center text-lg-start">
-          <ul class="list-inline footer-menu">
-            <li class="list-inline-item m-0"><a href="http://hassan-ahmadi.ir">تماس با من</a></li>            
-          </ul>
-        </div> {% endcomment %}
       </div>
     </div>
   </div>

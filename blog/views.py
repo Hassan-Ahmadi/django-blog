@@ -6,11 +6,16 @@ from django.utils import timezone
 # Create your views here.
 
 
-def blog_view(request, cat_name=None):
+def blog_view(request, **kwargs):
     # posts = Post.objects.filter(is_published=True)
     posts = Post.objects.filter(published_date__lte=timezone.now(), is_published=True)
-    if cat_name:
-        posts = posts.filter(category__name=cat_name)
+    
+    if kwargs.get('cat_name'):
+        posts = posts.filter(category__name=kwargs['cat_name'])
+    
+    if kwargs.get('author_username'):
+        posts = posts.filter(author__username=kwargs['author_username'])
+    
     context = {"posts": posts}
     return render(request, "blog/blogs.html", context)
 
@@ -80,6 +85,15 @@ def categories_view(request):
 
     context = {"categories": categories_count}
     return render(request, "blog/categories.html", context)
+
+def blog_search(request):
+    posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
+    if request.method == 'GET':
+        if s := request.GET.get('s'):
+            posts = posts.filter(content__contains=s)
+            
+    context = {'posts': posts}
+    return render(request, 'blog/blogs.html', context)
 
 
 def test_view(request):

@@ -75,7 +75,7 @@
               <div class="card-footer border-top-0 bg-transparent p-0">
                 <ul class="card-meta list-inline">
                   <li class="list-inline-item mt-2">
-                    <a href="#" class="card-meta-author" title="خواندن پست نوشته شده توسط - {{ post.author }}">
+                    <a href="{% url 'blog:author' author_username=post.author.username %}" class="card-meta-author" title="خواندن پست نوشته شده توسط - {{ post.author }}">
                          توسط 
                          <span>{{ post.author.get_full_name }}</span>
                     </a>

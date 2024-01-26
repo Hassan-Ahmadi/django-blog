@@ -20,6 +20,8 @@ def count_posts():
 def to_lower(text: str):
     return text.lower()
 
+# Usage: {{ some_value | to_lower }}
+
 
 @register.inclusion_tag("blog/popular-posts.html")
 def popular_posts():
@@ -27,16 +29,31 @@ def popular_posts():
     return {"pop_posts": pop_posts}
 
 
-@register.inclusion_tag("blog/counted-categories.html")
-def post_categories():
+# @register.inclusion_tag("blog/counted-categories.html")
+# def post_categories():
+#     posts = Post.objects.filter(is_published=True)
+#     categories = Category.objects.all()
+
+#     counted_categories = {}
+
+#     for cat in categories:
+#         count = posts.filter(category=cat).count()
+#         if count:
+#             counted_categories[cat] = count
+
+#     return {"categories": count_posts}
+
+
+@register.inclusion_tag("blog/parts/search-cat.html")
+def search_by_categories():
     posts = Post.objects.filter(is_published=True)
     categories = Category.objects.all()
 
-    counted_categories = {}
+    counted_categories = []
 
     for cat in categories:
         count = posts.filter(category=cat).count()
         if count:
-            counted_categories[cat] = count
+            counted_categories.append(cat)
 
-    return {"categories": count_posts}
+    return {"categories": counted_categories}
