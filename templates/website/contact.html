@@ -46,22 +46,55 @@
         <div class="col-lg-5 ms-lg-auto ms-lg-0 ms-auto">
           <h2 class="h3 mb-4">فرم تماس</h2>
 
-          <form class="row g-4" action="#!" method="post">
+          <form class="row g-4" action="{% url 'website:contact' %}" method="POST">
+            {% csrf_token %}
+
             <div class="col-md-12">
-              <textarea class="form-control" placeholder="سوال بپرسید یا فقط بگو سلام" rows="4" name="message" required></textarea>
+              <input type="text" class="form-control" placeholder="نام شما اینجاست" name="name" required />
             </div>
             <div class="col-md-12">
               <input type="email" class="form-control" placeholder="آدرس ایمیل" name="email" required />
             </div>
             <div class="col-md-12">
-              <input type="text" class="form-control" placeholder="نام شما اینجاست" name="name" required />
+              <input type="text" class="form-control" placeholder="موضوع" name="subject"/>
             </div>
+            <div class="col-md-12">
+              <textarea class="form-control" placeholder="سوال بپرسید یا فقط بگو سلام" rows="4" name="message" required></textarea>
+            </div>
+
+  {% comment %} {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+    {% endfor %}
+  {% endif %}
+
+  {% if form.errors %}
+    <div class="alert alert-error">
+      <h4>Please fix the following errors</h4>
+      <ul>
+        {% for field in form %}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+    </div>
+  {% endif %}                            {% endcomment %}
+              
+          
             <div class="col-12">
               <button type="submit" class="btn btn-primary" aria-label="پیام فرستادن">ارسال <i class="ti ti-brand-telegram me-1"></i></button>
             </div>
           </form>
+
         </div>
       </div>
     </div>
   </section>
+
 {% endblock %}
