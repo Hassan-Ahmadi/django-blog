@@ -1,4 +1,6 @@
 from django import template
+from django.utils import timezone
+
 from ..models import Post
 from ..models import Category
 
@@ -57,3 +59,8 @@ def search_by_categories():
             counted_categories.append(cat)
 
     return {"categories": counted_categories}
+
+@register.inclusion_tag("blog/parts/popular-posts.html")
+def latest_posts(count=3):
+    latest_posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now()).order_by("published_date")[:count]
+    return {"latest_posts": latest_posts}

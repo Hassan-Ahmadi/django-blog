@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block navbar %}
 
@@ -46,60 +47,15 @@
       </div>
 
       <div class="row gy-5 gx-4 g-xl-5">
-        {% for post in posts %}
-          <div class="col-lg-6">
-            <article class="card post-card h-100 border-0 bg-transparent">
-              <div class="card-body">
-                <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}>
-                  <div class="post-image position-relative">
-                    <img class="w-100 h-auto rounded" src={{ post.image.url }} alt={{ post.title }} width="970" height="auto" />
-                  </div>
-                </a>
-                <ul class="card-meta list-inline mb-3">
-                  <li class="list-inline-item mt-2">
-                    <i class="ti ti-calendar-event"></i>
-                    <span>{{ post.published_date | date:"M Y"}}</span>
-                  </li>
-                  {% if post.read_duration_minutes %}
-                    <li class="list-inline-item mt-2">—</li>
-                    <li class="list-inline-item mt-2">
-                      
-                      <i class="ti ti-clock"></i>
-                      <span>{{ post.read_duration_minutes }} دقیقه خوانش</span>
-                    </li>
-                  {% endif %}
-                </ul>
-                <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}><h3 class="mb-3 post-title">{{ post.title }}</h3></a>
-                <p>{{ post.content | truncatewords:30 | linebreaks}}</p>
-              </div>
-              <div class="card-footer border-top-0 bg-transparent p-0">
-                <ul class="card-meta list-inline">
-                  <li class="list-inline-item mt-2">
-                    <a href="{% url 'blog:author' author_username=post.author.username %}" class="card-meta-author" title="خواندن پست نوشته شده توسط - {{ post.author }}">
-                         توسط 
-                         <span>{{ post.author.get_full_name }}</span>
-                    </a>
-                  </li>
-                  <li class="list-inline-item mt-2">•</li>
-                  <li class="list-inline-item mt-2"> {{ post.counted_view }} بازدید</li>
-                  <li class="list-inline-item mt-2">•</li>
-                  <li class="list-inline-item mt-2">
-                    <ul class="card-meta-tag list-inline">
-                      {% for category in post.category.all %}
-                        <li class="list-inline-item small"><a href="{% url 'blog:category' cat_name=category.name %}">{{ category.name }}</a></li>
-                      {% endfor %}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        {% endfor %}
+        
+        {% latest_posts 4 %}
 
         <div class="col-12 text-center">
-          <a class="btn btn-primary mt-5" href="{% url 'blog:index' %}" aria-label="View all posts"><i class="ti ti-new-section ms-2"></i>مشاهده همه پست ها</a>
+          <a class="btn btn-primary mt-5" href="{% url 'blog:index' %}" aria-label="View all posts">
+            <i class="ti ti-new-section ms-2"></i>مشاهده همه پست ها
+          </a>
         </div>
-      </div>
+      </div>      
     </div>
   </section>
   <!-- blog warpper end -->
