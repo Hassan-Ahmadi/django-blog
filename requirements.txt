@@ -1,6 +1,7 @@
 django==3.2
 pillow==10.2.0
 django-resized
+django-robots==6.1
 
 # for development
 django_extensions==3.2.3

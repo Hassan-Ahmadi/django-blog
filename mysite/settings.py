@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    
+    'robots',
     # for development
     'django_extensions',
     # ----------------
@@ -59,6 +59,10 @@ INSTALLED_APPS = [
 # to let djnago know what is the real domain name
 # 2 is the id of localhost
 SITE_ID = 2
+
+# ROBOTS
+ROBOTS_USE_HOST = True
+ROBOTS_USE_SITEMAP = True
 
 
 MIDDLEWARE = [
