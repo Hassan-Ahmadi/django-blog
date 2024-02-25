@@ -1,7 +1,5 @@
+{% load humanize %}
 {% load static %}
-
-
-
   <!-- blog warpper start -->
   <section>
     <div class="container">
@@ -25,7 +23,7 @@
         <ul class="card-meta list-inline mb-3">
             <li class="list-inline-item mt-2">
             <i class="ti ti-calendar-event"></i>
-            <span>{{ post.published_date | date:"M Y"}}</span>
+            <span>{{ post.published_date | naturaltime }}</span>
             </li>
             {% if post.read_duration_minutes %}
             <li class="list-inline-item mt-2">—</li>
