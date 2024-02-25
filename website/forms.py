@@ -1,5 +1,7 @@
 from django import forms
 from .models import Contact, Newsletter
+from django.shortcuts import render
+
 
 class NameForm(forms.Form):
     name = forms.CharField(max_length=255)
@@ -13,8 +15,8 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
     
-    def clean_name(self):
-        return "ناشناس"
+    # def clean_name(self):
+    #     return "ناشناس"
     
 class NewsletterForm(forms.ModelForm):
         

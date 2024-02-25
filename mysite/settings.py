@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
+    
+    # for development
     'django_extensions',
+    # ----------------
     
     # added lib apps
     # 'django_resized',
@@ -51,6 +55,11 @@ INSTALLED_APPS = [
     
     
 ]
+
+# to let djnago know what is the real domain name
+# 2 is the id of localhost
+SITE_ID = 2
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

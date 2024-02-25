@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 
+
 # Create your views here.
 # custom 404 view
 def custom_404(request, exception):
@@ -40,11 +41,13 @@ def contact_us_view(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+
+            form.instance.name = "ناشناس"
             form.save()
             messages.add_message(request, messages.SUCCESS, "Your message has been sent successfully")
             # return redirect(request.META.get('HTTP_REFERER'))
             
-            # return redirect(request.META.get('HTTP_REFERER'))
+  #           # return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.add_message(request, messages.ERROR, "Form is not valid")
             # return redirect(request.META.get('HTTP_REFERER'), messages="Form is not valid")            

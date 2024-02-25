@@ -16,18 +16,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import StaticViewSitemap
+from blog.sitemaps import BlogSitemap
+
 from django.conf import settings
 
-from django.conf.urls import handler404
+# from django.conf.urls import handler404
 
 handler404 = 'website.views.custom_404'
+
+sitemaps = {
+    "static": StaticViewSitemap,
+    "blog": BlogSitemap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    path('', include('website.urls'))
+    path('', include('website.urls')),    
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap")
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
