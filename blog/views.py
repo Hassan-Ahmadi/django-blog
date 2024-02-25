@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.models import User
 
 # import datetime
 # Create your views here.
@@ -10,24 +11,26 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def blog_view(request, **kwargs):
     # posts = Post.objects.filter(is_published=True)
     posts = Post.objects.filter(published_date__lte=timezone.now(), is_published=True)
-    
-    if kwargs.get('cat_name'):
-        posts = posts.filter(category__name=kwargs['cat_name'])
-    
-    if kwargs.get('author_username'):
-        posts = posts.filter(author__username=kwargs['author_username'])
-    
+
+    if kwargs.get("cat_name"):
+        posts = posts.filter(category__name=kwargs["cat_name"])
+
+    if kwargs.get("author_username"):
+        posts = posts.filter(author__username=kwargs["author_username"])
+
     # handeling pagination
     posts = Paginator(posts, 2)
     try:
-        page_number = request.GET.get('page')
+        page_number = request.GET.get("page")
         posts = posts.get_page(page_number)
 
     except PageNotAnInteger:
         posts.get_page(1)
-    
+
     except EmptyPage:
         posts.get_page(posts.num_pages)
+
+    # --------------------------------
 
     context = {"posts": posts}
     return render(request, "blog/blogs.html", context)
@@ -99,15 +102,39 @@ def categories_view(request):
     context = {"categories": categories_count}
     return render(request, "blog/categories.html", context)
 
+
 def blog_search(request):
     posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
-    if request.method == 'GET':
-        if s := request.GET.get('s'):
+    if request.method == "GET":
+        if s := request.GET.get("s"):
             posts = posts.filter(content__contains=s)
-            
-    context = {'posts': posts}
-    return render(request, 'blog/blogs.html', context)
+
+    context = {"posts": posts}
+    return render(request, "blog/blogs.html", context)
 
 
 def test_view(request):
     return render(request, "blog/test.html")
+
+
+def author_view(request):
+    posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
+    authors = User.objects.filter(is_staff=False)
+    authors_posts = {}
+    for author in authors:
+        authors_posts[author.username] = posts.filter(
+            author__username=author.username
+        ).count()
+
+    context = {"authors": authors_posts}
+    return render(request, "blog/author.html", context)
+
+
+# def author_single_view(request, author_id: int):
+#     print('I am called !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+#     posts = Post.objects.filter(is_published=True, published_date__lte=timezone.now())
+#     posts = posts.filter(author__id=author_id)
+#     author = User.objects.get(id=author_id)
+    
+#     context = {"posts": posts, "author": author}
+#     return render(request, "blog/author-single.html", context)

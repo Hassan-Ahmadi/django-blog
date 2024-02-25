@@ -67,7 +67,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صفحات</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">نویسنده ها</a></li>
+                  <li><a class="dropdown-item" href="{% url 'blog:author' %}">نویسنده ها</a></li>
                   {% comment %} <li><a class="dropdown-item" href="#">برچسب‌ها</a></li> {% endcomment %}
                   <li><a class="dropdown-item" href="{% url 'blog:categories' %}">دسته‌بندی‌ها</a></li>                  
                 </ul>

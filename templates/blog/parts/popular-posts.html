@@ -1,9 +1,23 @@
 {% load static %}
-{% for post in latest_posts %}
-    <div class="col-lg-6">
-    <article class="card post-card h-100 border-0 bg-transparent">
-        <div class="card-body">
-        <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}>
+
+
+
+  <!-- blog warpper start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="section-title"><span>پست های اخیر</span></h2>
+        </div>
+      </div>
+
+      <div class="row gy-5 gx-4 g-xl-5">
+        
+        {% for post in latest_posts %}
+            <div class="col-lg-6">
+                <article class="card post-card h-100 border-0 bg-transparent">
+            <div class="card-body">
+            <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}>
             <div class="post-image position-relative">
             <img class="w-100 h-auto rounded" src={{ post.image.url }} alt={{ post.title }} width="970" height="auto" />
             </div>
@@ -47,4 +61,14 @@
         </div>
         </article>
     </div>
-{% endfor %}
+    {% endfor %}
+
+        <div class="col-12 text-center">
+          <a class="btn btn-primary mt-5" href="{% url 'blog:index' %}" aria-label="View all posts">
+            <i class="ti ti-new-section ms-2"></i>مشاهده همه پست ها
+          </a>
+        </div>
+      </div>      
+    </div>
+  </section>
+  <!-- blog warpper end -->

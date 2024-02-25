@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags%}
+
+{% block navbar %}
+<section class="page-header section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="section-title h2 mb-3">
+          <span>نویسنده</span>
+        </h1>
+        <ul class="list-inline breadcrumb-menu mb-3">
+          <li class="list-inline-item"><a href="index.html"><i class="ti ti-home"></i>  <span>خانه</span></a></li>
+          <li class="list-inline-item">• &nbsp; <a href="author.html"><span>نویسنده</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section-sm pt-0 mt-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="row gx-4 gy-5 gx-md-5 justify-content-center text-center">
+          
+          {% for author, posts_count in authors.items %}
+          <div class="col-md-4 col-sm-6">
+            <a class="d-inline-block is-hoverable" href="{% url 'blog:author' author_username=author %}">
+              {% comment %} <img class="img-fluid rounded" src="assets/images/author/chris-impey.jpg" alt=" کریس ایپلی" width="150" height="150"> {% endcomment %}
+              <h4 class="text-dark mt-4 mb-1"> {{ author }}</h4>
+              <p class="mb-0"><span class="fw-bold text-black">{{ posts_count }}</span> پست های منتشرشده </p>
+            </a>
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- blog warpper start -->
+  {% latest_posts 6 %}
+  <!-- blog warpper end -->
+
+{% endblock %}
