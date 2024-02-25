@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'robots',
     # for development
+    'debug_toolbar',
     'django_extensions',
+    
     # ----------------
     
     # added lib apps
@@ -73,6 +75,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -157,3 +161,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# For djnago_debug_toolbar
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+# ------------------------
