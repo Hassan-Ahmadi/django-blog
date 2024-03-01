@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 from .models import Post, Category
@@ -9,7 +10,7 @@ from .models import Post, Category
 # Customized admin
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
     date_hierarchy = 'created_at'
     list_display = ('title',
                     'author',
@@ -26,5 +27,7 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ('-created_at',)
     
     search_fields = ('title', 'content')
+    
+    summernote_fields = ('content',)
 
 admin.site.register(Category)

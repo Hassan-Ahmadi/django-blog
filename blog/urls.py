@@ -21,4 +21,5 @@ urlpatterns = [
     path("search/", blog_search, name="search"),
     path("author/", author_view, name="author"),
     path("test", test_view, name="test"),
+    
 ]
