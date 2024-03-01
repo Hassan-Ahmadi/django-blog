@@ -1,11 +1,15 @@
 django==3.2
+
+# to support image field in db
 pillow==10.2.0
+
 django-resized
 django-robots==6.1
+django-taggit==1.4.0
 
 # for development
 django_extensions==3.2.3
 pyparsing
 pydot
 
-django-debug-toolbar==2.2
+django-debug-toolbar==3.2.1

@@ -3,6 +3,7 @@ from .models import Post, Category
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.models import User
+from .models import Post
 
 # import datetime
 # Create your views here.
@@ -17,6 +18,9 @@ def blog_view(request, **kwargs):
 
     if kwargs.get("author_username"):
         posts = posts.filter(author__username=kwargs["author_username"])
+
+    if kwargs.get("tag_name") != None:
+        posts = posts.filter(tags__name__in=[kwargs["tag_name"]])
 
     # handeling pagination
     posts = Paginator(posts, 2)
