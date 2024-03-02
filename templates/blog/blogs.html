@@ -50,7 +50,7 @@
                   </li>
                 </ul>
                 <a class="d-block" href="{% url 'blog:single' pid=post.id %}" title={{ post.title }}><h3 class="mb-3 post-title">{{ post.title }}</h3></a>
-                <p>{{ post.content | truncatewords:40 | linebreaks }}</p>
+                <p>{{ post.content | safe | truncatewords:40 | linebreaks}}</p>
               </div>
               <div class="card-footer border-top-0 bg-transparent p-0">
                 <ul class="card-meta list-inline">
