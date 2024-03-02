@@ -47,17 +47,21 @@
           <h2 class="h3 mb-4">فرم تماس</h2>
 
           <form class="row g-4" action="{% url 'website:contact' %}" method="POST">
+            
             {% csrf_token %}
             
             <div class="col-md-12">
               <input type="text" class="form-control" placeholder="نام شما اینجاست" name="name" required />
             </div>
+
             <div class="col-md-12">
               <input type="email" class="form-control" placeholder="آدرس ایمیل" name="email" required />
             </div>
+
             <div class="col-md-12">
               <input type="text" class="form-control" placeholder="موضوع" name="subject"/>
             </div>
+
             <div class="col-md-12">
               <textarea class="form-control" placeholder="سوال بپرسید یا فقط بگو سلام" rows="4" name="message" required></textarea>
             </div>              
@@ -69,6 +73,7 @@
             <div class="col-12">
               <button type="submit" class="btn btn-primary" aria-label="پیام فرستادن">ارسال <i class="ti ti-brand-telegram me-1"></i></button>
             </div>
+
           </form>
 
         </div>

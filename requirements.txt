@@ -8,6 +8,8 @@ django-robots==6.1
 django-taggit==1.4.0
 django-summernote
 django-simple-captcha==0.5.20
+# captcha for admin
+django-multi-captcha-admin==2.0.0
 
 # for development
 django_extensions==3.2.3
