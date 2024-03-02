@@ -52,12 +52,13 @@ def contact_us_view(request):
             messages.add_message(request, messages.ERROR, "Form is not valid")
             # return redirect(request.META.get('HTTP_REFERER'), messages="Form is not valid")            
         
-    # elif request.method == "GET":        
-    #     pass
+    elif request.method == "GET":                    
+        pass
     
     context = {
             "phone": "+98 919 1200 824",
             "email": "h20.ahmadi@gmail.com",
+            "form": ContactForm()
             }
     return render(request, "website/contact.html", context)
 
