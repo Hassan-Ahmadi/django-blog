@@ -126,7 +126,14 @@
         </div>
       </div>
     </div>
+
+    
     {% endif %}
+
+
+    {% comment %} 
+
+                                          Handeling Comments using discus
 
     <div id="disqus_thread"></div>
       <script>
@@ -149,5 +156,75 @@
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
   </div>
+ {% endcomment %}
+
+{% comment %} Handeling Comments Manually {% endcomment %}
+<h2 class="section-title text-center mb-4">نظرات</h2>
+
+{% for comment in comments %}
+  <div class="single-post-author">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="d-block d-md-flex">          
+            <img class="rounded mr-4" src="{% static 'assets/images/author/thomas-macaulay.jpg' %}" width="96" height="96">
+          </a>          
+            <div class="ms-0 ms-md-4 ps-0 ps-md-3 mt-4 mt-md-0 mx-md-3">              
+              <h5 class="h4 mb-1">{{ comment.name }}</h5>
+              <p>{{ comment.message }}</p> 
+              <small>{{ comment.created_at|naturaltime }}</small>
+            </div>                  
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <div class="justify-content-center">
+    <p> Be the first one to share your thoughts </p>
+  </div>
+{% endfor %}
+
+{% comment %} <form method='Post' action="{% url 'blog:single' pid=post.id %}">
+  {% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Send</button>
+</form> {% endcomment %}
+
+<div class="col-lg-5 ms-lg-auto ms-lg-0 ms-auto">
+  <h3 class="h3 mb-4">ثبت نظر</h3>
+
+  <form method='Post' action="{% url 'blog:single' pid=post.id %}">
+              
+    {% csrf_token %}
+    
+    <input type='hidden' name='post' value={{ post.id }}>
+
+    <div class="col-md-12">
+      <input type="text" class="form-control" placeholder="نام شما اینجاست" name="name" required />
+    </div>
+
+    <div class="col-md-12">
+      <input type="email" class="form-control" placeholder="آدرس ایمیل" name="email" required />
+    </div>
+
+    <div class="col-md-12">
+      <input type="text" class="form-control" placeholder="موضوع" name="subject"/>
+    </div>
+
+    <div class="col-md-12">
+      <textarea class="form-control" placeholder="نظرتون در مورد این مطلب چی بود؟" rows="4" name="message" required></textarea>
+    </div>              
+    
+    {% comment %} <div class="col-md-12">
+      {{ form.captcha }}
+    </div> {% endcomment %}
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" aria-label="ثبت نظر">ارسال <i class="ti ti-brand-telegram me-1"></i></button>
+    </div>
+
+  </form>
+
+</div>
+
 </section>
 {% endblock %}
