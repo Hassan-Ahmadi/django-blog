@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from .models import Post, Comment
 from .forms import CommentForm
 from django.contrib import messages
+from django.urls import reverse
+from django.shortcuts import redirect
 # import datetime
 # Create your views here.
 
@@ -50,8 +52,7 @@ def blog_single(request, pid: int):
             messages.error(request, messages.SUCCESS, 'Successfully submitted comment. It will be published after approval.')
         else:
             messages.error(request, messages.ERROR, 'Error in form submission')
-            
-
+                
     posts = Post.objects.filter(
         pk=pid, is_published=True, published_date__lte=timezone.now()
     )
@@ -90,6 +91,9 @@ def blog_single(request, pid: int):
 
     except Post.DoesNotExist:
         pre_post = None
+
+    if post.login_required and not request.user.is_authenticated:
+        return redirect(reverse("accounts:login"))
 
     context = {"post": post, "next_post": next_post, "pre_post": pre_post, 'comments': comments, 'form': form}
     return render(request, "blog/blog-single.html", context)

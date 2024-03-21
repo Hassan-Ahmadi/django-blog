@@ -41,7 +41,7 @@ def signup_view(request):
         if form.is_valid():
             form.save()
             # return reverse('accounts:login')
-            return redirect('/')
+            return redirect(reverse('accounts:login'))
         else:
             messages.error(request, messages.ERROR, 'Failed to create account. Please try again.')            
         
