@@ -54,3 +54,27 @@ def signup_view(request):
     form = UserCreationForm()
     context = {'form': form}
     return render(request, 'accounts/signup.html', context)
+
+# def reset_password_view(request):
+#     # if not already logged in
+#     if request.user.is_authenticated:
+#         return redirect('/')
+    
+#     # # else way let the user signup
+#     if request.method == "POST":
+#         return render(request, 'accounts/reset-password-done.html')
+#     #     form = UserCreationForm(request.POST)        
+#     #     if form.is_valid():
+#     #         print('Form is valid!')
+#     #         form.save()
+#     #         print('Form saved!')
+#     #         # return reverse('accounts:login')
+#     #         return redirect(reverse('accounts:login'))
+#     #     else:
+            
+#     #         print('Form is not valid!', form.error_messages)
+#     #         messages.error(request, messages.ERROR, f'Failed to create account. {form.error_messages}')
+        
+#     # form = UserCreationForm()
+#     # context = {}
+#     return render(request, 'accounts/reset-password.html')
