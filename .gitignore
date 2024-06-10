@@ -1,8 +1,9 @@
 # Ignore venv directory
 venv/
+.venv/
 
 # Ignore db.sqlite3 file
-db.sqlite3
+# db.sqlite3
 
 # Ignore .vscode directory
 .vscode/

@@ -39,13 +39,17 @@ def signup_view(request):
     
     # else way let the user signup
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST)        
         if form.is_valid():
+            print('Form is valid!')
             form.save()
+            print('Form saved!')
             # return reverse('accounts:login')
             return redirect(reverse('accounts:login'))
         else:
-            messages.error(request, messages.ERROR, 'Failed to create account. Please try again.')            
+            
+            print('Form is not valid!', form.error_messages)
+            messages.error(request, messages.ERROR, f'Failed to create account. {form.error_messages}')
         
     form = UserCreationForm()
     context = {'form': form}

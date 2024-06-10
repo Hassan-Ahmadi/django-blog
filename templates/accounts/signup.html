@@ -25,19 +25,20 @@
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center">Create an account</h3>
 
-
-              <form action="{% url 'accounts:signup' %}" class="signin-form" method="post">
+              <form action="{% url 'accounts:signup' %}"  method="post">
                 {% csrf_token %}
                 <div class="form-group">
                   <input name="username" type="text" class="form-control" placeholder="Username" required />
                 </div>
                 <div class="form-group">
                   <input name="email" type="email" class="form-control" placeholder="Email" />
-                </div>                
+                </div> 
+
                 <div class="form-group">
                   <input name="password1" type="password" class="form-control" placeholder="Password" required />
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
+
                 <div class="form-group">
                   <input name="password2" type="password" class="form-control" placeholder="Confirm Password" required />
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
@@ -46,11 +47,8 @@
                 <div class="form-group">
                   <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
                 </div>
-
-
-
+                
               </form>
-
 
             </div>
           </div>
