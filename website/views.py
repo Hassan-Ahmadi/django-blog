@@ -88,3 +88,7 @@ def index_view(request):
 
     context = {"posts": posts}
     return render(request, "website/index.html", context)
+
+
+def coming_soon(request):
+    return render(request, 'website/comingsoon.html')  

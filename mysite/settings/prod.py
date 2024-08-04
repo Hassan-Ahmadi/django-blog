@@ -9,7 +9,7 @@ SECRET_KEY = '!d4rwb-)#@8)-ujb%z)fugqlp651j)vlu5yx=-r%t=zz!kynu9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # to let djnago know what is the real domain name
 # 2 is the id of localhost
@@ -33,4 +33,13 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
 CSRF_COOKIE_SECURE = True
+
+
+SECURE_SSL_REDIRECT = True
+
+# Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.
+SESSION_COOKIE_SECURE = True
+
+X_FRAME_OPTIONS = 'DENY'
