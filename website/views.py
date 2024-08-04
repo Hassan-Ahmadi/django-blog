@@ -90,5 +90,5 @@ def index_view(request):
     return render(request, "website/index.html", context)
 
 
-def coming_soon(request):
+def maintenance(request):
     return render(request, 'website/comingsoon.html')  

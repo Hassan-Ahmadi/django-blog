@@ -24,11 +24,11 @@ from blog.sitemaps import BlogSitemap
 # development time imports
 import debug_toolbar
 from django.urls import path  
-from website.views import coming_soon 
+from website.views import maintenance 
 # ------------------------
 
 from django.conf import settings
-
+from django.urls import re_path
 # from django.conf.urls import handler404
 
 handler404 = 'website.views.custom_404'
@@ -38,24 +38,21 @@ sitemaps = {
     "blog": BlogSitemap
 }
 
-# urlpatterns = [
-#     path('coming/', coming_soon, name='coming_soon'),
-#     path('admin/', admin.site.urls),
-#     path('blog/', include('blog.urls')),
-#     path('', include('website.urls')),    
-#     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
-#     path('robots.txt', include('robots.urls')),
-#     path("__debug__/", include(debug_toolbar.urls)),
-#     path('summer_note/', include('django_summernote.urls')),
-#     path(r'captcha/', include('captcha.urls')), 
-#     path('accounts/', include('accounts.urls')),
-#     path("accounts/", include("django.contrib.auth.urls")),
-# ]
 
-urlpatterns = [  
-    path('', coming_soon, name='coming_soon'),  # صفحه اصلی  
-    path('<path:path>/', coming_soon),  # همه درخواست‌ها به این ویو ارسال می‌شود  
-]  
+urlpatterns = [
+    path('maintenance/', maintenance, name='maintenance'),
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+    path('', include('website.urls')),    
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+    path('robots.txt', include('robots.urls')),
+    path("__debug__/", include(debug_toolbar.urls)),
+    path('summer_note/', include('django_summernote.urls')),
+    path(r'captcha/', include('captcha.urls')), 
+    path('accounts/', include('accounts.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
+]
+
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

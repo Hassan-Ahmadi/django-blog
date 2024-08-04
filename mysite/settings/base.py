@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'robots',
     'taggit',
     # for development
-    
-    # 'debug_toolbar',
-    # 'django_extensions',
+    'debug_toolbar',
+    'django_extensions',
     
     # ----------------
     
@@ -111,7 +110,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    
+    # if MAINTENANCE_MODE is True redirects all requests to maintenance page
+    "website.middleware.MaintenanceModeMiddleware"
+    
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -133,10 +136,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
-
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -189,11 +188,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 # ------------------------
-
-
-
-# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
