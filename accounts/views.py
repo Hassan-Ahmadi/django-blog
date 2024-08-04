@@ -24,6 +24,9 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('/')                    
+            else:
+                messages.add_message(request, 50, "A serious error occurred.")
+                
 
     return render(request, 'accounts/login.html', context)
 

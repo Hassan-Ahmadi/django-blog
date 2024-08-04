@@ -28,11 +28,21 @@
               <form action="{% url 'accounts:login' %}" class="signin-form" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username" name="username" required />
+                  <input type="text" class="form-control" placeholder="Username or Email" name="username" required />
                 </div>
                 <div class="form-group">
                   <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required />
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <small><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></small>
+                    <small>{{ message }}</small>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  
                 </div>
                 <div class="form-group">
                   <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
