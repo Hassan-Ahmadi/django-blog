@@ -10,7 +10,6 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 
-
 # Create your views here.
 # custom 404 view
 def custom_404(request, exception):
@@ -30,11 +29,15 @@ def newsletter_view(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, "Your email added to newsletter successfully")
+            messages.add_message(
+                request, messages.SUCCESS, "Your email added to newsletter successfully"
+            )
         else:
-            messages.add_message(request, messages.ERROR, "Failed to add your email to newsletter")
-            
-        return redirect(request.META.get('HTTP_REFERER'))
+            messages.add_message(
+                request, messages.ERROR, "Failed to add your email to newsletter"
+            )
+
+        return redirect(request.META.get("HTTP_REFERER"))
 
 
 def contact_us_view(request):
@@ -44,39 +47,41 @@ def contact_us_view(request):
 
             form.instance.name = "ناشناس"
             form.save()
-            messages.add_message(request, messages.SUCCESS, "Your message has been sent successfully")
+            messages.add_message(
+                request, messages.SUCCESS, "Your message has been sent successfully"
+            )
             # return redirect(request.META.get('HTTP_REFERER'))
-            
-  #           # return redirect(request.META.get('HTTP_REFERER'))
+
+        #           # return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.add_message(request, messages.ERROR, "Form is not valid")
-            # return redirect(request.META.get('HTTP_REFERER'), messages="Form is not valid")            
-        
-    elif request.method == "GET":                    
+            # return redirect(request.META.get('HTTP_REFERER'), messages="Form is not valid")
+
+    elif request.method == "GET":
         pass
-    
+
     context = {
-            "phone": "+98 919 1200 824",
-            "email": "h20.ahmadi@gmail.com",
-            "form": ContactForm()
-            }
+        "phone": "+98 919 1200 824",
+        "email": "h20.ahmadi@gmail.com",
+        "form": ContactForm(),
+    }
     return render(request, "website/contact.html", context)
 
 
-def test_view(request):
-    if request.method == "POST":
-        form = NameForm(request.POST)
-        if form.is_valid():
-            form.save()
-            name = form.cleaned_data["name"]
-            email = form.cleaned_data["email"]
-            subject = form.cleaned_data["subject"]
-            message = form.cleaned_data["message"]
-            print(name, email, subject, message)
-            return HttpResponse("")
-    else:
-        form = NameForm()
-    return render(request, "website/test.html")
+# def test_view(request):
+#     if request.method == "POST":
+#         form = NameForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             name = form.cleaned_data["name"]
+#             email = form.cleaned_data["email"]
+#             subject = form.cleaned_data["subject"]
+#             message = form.cleaned_data["message"]
+#             print(name, email, subject, message)
+#             return HttpResponse("")
+#     else:
+#         form = NameForm()
+#     return render(request, "website/test.html")
 
 
 def index_view(request):
@@ -91,4 +96,4 @@ def index_view(request):
 
 
 def maintenance(request):
-    return render(request, 'website/comingsoon.html')  
+    return render(request, "website/comingsoon.html")

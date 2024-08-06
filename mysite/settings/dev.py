@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-19=hbi--*be@@hffo!vjw@r#+^#(j$%lw#z3@14rp$$4g7e7$f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # to let djnago know what is the real domain name
