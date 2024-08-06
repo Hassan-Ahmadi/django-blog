@@ -195,3 +195,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'h20.ahmadi@gmail.com'
 EMAIL_HOST_PASSWORD = 'lenp ppmf cdfw coql'
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.UsernameOrEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
