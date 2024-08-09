@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/login_style.css' %}"/>
   </head>
   <body class="img js-fullheight" style="background-image: url({% static 'assets/images/bg.jpg' %});">
+    {% include 'message.html' %}
+
     <section class="ftco-section">
       <div class="container">
         <div class="row justify-content-center">
@@ -34,14 +36,7 @@
                   <input id="password-field" type="password" class="form-control" placeholder="Password" name="password" required />
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                   
-                  {% if messages %}
-                  <ul class="text text-danger">
-                    {% for message in messages %}
-                    {% comment %} <small><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></small> {% endcomment %}
-                    <small>{{ message }}</small>
-                    {% endfor %}
-                  </ul>
-                  {% endif %}
+
                   
                 </div>
                 <div class="form-group">
@@ -71,5 +66,16 @@
     <script src="{% static 'assets/js/popper.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+
+    {% comment %} Messages JS {% endcomment %}
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            $(document).ready(function () {
+                $('.toast').toast('show');
+            });
+        {% endfor %}
+    </script>
+    {% endif %}
   </body>
 </html>

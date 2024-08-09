@@ -29,6 +29,8 @@
 </head>
 <body>
 
+  {% include 'message.html' %}
+
 <div class="header-height-fix"></div>
 <header class="header-nav">
   <div class="container">
@@ -140,7 +142,7 @@
 {% endblock content %}
 
 
-{% block default_messages %}
+{% comment %} {% block default_messages %}
 
 {% if messages %}
 <ul class="messages">
@@ -150,7 +152,7 @@
 </ul>
 {% endif %}
 
-{% endblock default_messages %}
+{% endblock default_messages %} {% endcomment %}
 
 <!-- start of footer -->
 <footer>
@@ -195,6 +197,18 @@
 <!-- Main Script -->
 <script src="{% static 'assets/js/script.js' %}"></script>
 
+
+{% comment %} Messages JS {% endcomment %}
+{% if messages %}
+  <script>
+      {% for message in messages %}
+          $(document).ready(function () {
+              $('.toast').toast('show');
+          });
+      {% endfor %}
+  </script>
+{% endif %}
+
 </body>
-<!-- => ALDev @ market.radib.com <= about.html => Uploaded at Radib File Markket <=  [XR&CO'2014], Sat, 29 Jan 2022 11:37:25 GMT -->
+
 </html>

@@ -10,4 +10,5 @@ urlpatterns = [
     path("contact", contact_us_view, name="contact"),
     path("newsletter", newsletter_view, name="newsletter"),
     path("", index_view, name="index"),
-    ]
+
+]

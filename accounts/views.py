@@ -24,9 +24,9 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                messages.add_message(request, 50, "Invalid username or password.")
+                messages.add_message(request, messages.ERROR, "Invalid username or password.")
         else:
-            messages.add_message(request, 50, "Invalid username or password.")
+            messages.add_message(request, messages.ERROR, "Invalid username or password.")
 
     return render(request, "accounts/login.html", context)
 
@@ -59,7 +59,7 @@ def signup_view(request):
             #     messages.ERROR,
             #     f"Failed to create account. {form.error_messages}",
             # )
-            messages.add_message(request, 50, f"Failed to create account. {form.error_messages}")
+            messages.add_message(request, messages.ERROR, f"Failed to create account. {form.error_messages}")
 
     form = UserCreationForm()
     context = {"form": form}
