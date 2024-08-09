@@ -8,8 +8,6 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import messages
 
-# Create your views here.
-
 
 def login_view(request):
     context = {}
@@ -29,7 +27,6 @@ def login_view(request):
                 messages.add_message(request, 50, "Invalid username or password.")
         else:
             messages.add_message(request, 50, "Invalid username or password.")
-
 
     return render(request, "accounts/login.html", context)
 
@@ -56,12 +53,13 @@ def signup_view(request):
             return redirect(reverse("accounts:login"))
         else:
 
-            print("Form is not valid!", form.error_messages)
-            messages.error(
-                request,
-                messages.ERROR,
-                f"Failed to create account. {form.error_messages}",
-            )
+            # print("Form is not valid!", form.error_messages)
+            # messages.error(
+            #     request,
+            #     messages.ERROR,
+            #     f"Failed to create account. {form.error_messages}",
+            # )
+            messages.add_message(request, 50, f"Failed to create account. {form.error_messages}")
 
     form = UserCreationForm()
     context = {"form": form}
