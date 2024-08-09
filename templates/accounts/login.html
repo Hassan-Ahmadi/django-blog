@@ -35,9 +35,9 @@
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                   
                   {% if messages %}
-                  <ul class="messages">
+                  <ul class="text text-danger">
                     {% for message in messages %}
-                    <small><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></small>
+                    {% comment %} <small><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></small> {% endcomment %}
                     <small>{{ message }}</small>
                     {% endfor %}
                   </ul>

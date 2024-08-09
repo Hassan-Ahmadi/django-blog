@@ -26,7 +26,10 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                messages.add_message(request, 50, "A serious error occurred.")
+                messages.add_message(request, 50, "Invalid username or password.")
+        else:
+            messages.add_message(request, 50, "Invalid username or password.")
+
 
     return render(request, "accounts/login.html", context)
 
