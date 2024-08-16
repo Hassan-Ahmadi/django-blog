@@ -12,6 +12,10 @@ django-simple-captcha==0.5.20
 django-multi-captcha-admin==2.0.0
 
 django_compressor==4.5.1
+python-decouple==3.8
+
+# prod db
+psycopg2-binary==2.9.9
 
 # for development
 django_extensions==3.2.3

@@ -4,10 +4,12 @@ from mysite.settings.base import *
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-19=hbi--*be@@hffo!vjw@r#+^#(j$%lw#z3@14rp$$4g7e7$f'
+SECRET_KEY = config("SECRET_KEY", default="django-insecure-19=hbi--*be@@hffo!vjw@r#+^#(j$%lw#z3@14rp$$4g7e7$f")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool, default=True)
+
+MAINTENANCE_MODE = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,6 +36,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-MAINTENANCE_MODE = False
+
