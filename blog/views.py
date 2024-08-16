@@ -49,9 +49,9 @@ def blog_single(request, pid: int):
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.error(request, messages.SUCCESS, 'Successfully submitted comment. It will be published after approval.')
+            messages.add_message(request, messages.SUCCESS, 'کامنت شما ثبت شد و بعد از بررسی توسط ادمین منتشر خواهد شد.')
         else:
-            messages.error(request, messages.ERROR, 'Error in form submission')
+            messages.add_message(request, messages.ERROR, 'ثبت کامنت شما با خطا مواجه شد.')
                 
     posts = Post.objects.filter(
         pk=pid, is_published=True, published_date__lte=timezone.now()

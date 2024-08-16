@@ -30,11 +30,11 @@ def newsletter_view(request):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, "Your email added to newsletter successfully"
+                request, messages.SUCCESS, "ایمیل شما با موفقیت به روزنامه اضافه گردید."
             )
         else:
             messages.add_message(
-                request, messages.ERROR, "Failed to add your email to newsletter"
+                request, messages.ERROR, "ثبت ایمیل شما در روزنامه با خطا مواجه شد."
             )
 
         return redirect(request.META.get("HTTP_REFERER"))
@@ -48,10 +48,10 @@ def contact_us_view(request):
             form.instance.name = "ناشناس"
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, "Your message has been sent successfully"
+                request, messages.SUCCESS, "پیام شما با موفقیت ارسال شد."
             )
         else:
-            messages.add_message(request, messages.ERROR, "Form is not valid")
+            messages.add_message(request, messages.ERROR, "خطایی در ارسال پیام شما رخ داد")
             
 
     elif request.method == "GET":

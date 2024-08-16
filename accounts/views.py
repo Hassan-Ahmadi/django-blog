@@ -24,9 +24,9 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                messages.add_message(request, messages.ERROR, "Invalid username or password.")
+                messages.add_message(request, messages.ERROR, "نام کاربری و یا رمز عبور اشتباه است")
         else:
-            messages.add_message(request, messages.ERROR, "Invalid username or password.")
+            messages.add_message(request, messages.ERROR, "نام کاربری و یا رمز عبور اشتباه است")
 
     return render(request, "accounts/login.html", context)
 
@@ -52,14 +52,7 @@ def signup_view(request):
             # return reverse('accounts:login')
             return redirect(reverse("accounts:login"))
         else:
-
-            # print("Form is not valid!", form.error_messages)
-            # messages.error(
-            #     request,
-            #     messages.ERROR,
-            #     f"Failed to create account. {form.error_messages}",
-            # )
-            messages.add_message(request, messages.ERROR, f"Failed to create account. {form.error_messages}")
+            messages.add_message(request, messages.ERROR, f"حساب کاربری ایجاد نشد!{form.error_messages}")
 
     form = UserCreationForm()
     context = {"form": form}

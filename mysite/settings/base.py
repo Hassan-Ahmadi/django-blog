@@ -44,8 +44,17 @@ INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     "website.apps.WebsiteConfig",
     "accounts.apps.AccountsConfig",
+    
+    # django-compressor
+    "compressor",
 ]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 # ROBOTS
 ROBOTS_USE_HOST = True

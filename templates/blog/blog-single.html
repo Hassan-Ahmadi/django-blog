@@ -165,8 +165,8 @@
   <div class="single-post-author">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="d-block d-md-flex">          
-            <img class="rounded mr-4" src="{% static 'assets/images/author/thomas-macaulay.jpg' %}" width="96" height="96">
+        <div class="d-block d-md-flex">
+            <img class="rounded mr-4" src="{% static 'assets/images/author/user.jpg' %}" width="96" height="96">
           </a>          
             <div class="ms-0 ms-md-4 ps-0 ps-md-3 mt-4 mt-md-0 mx-md-3">              
               <h5 class="h4 mb-1">{{ comment.name }}</h5>
@@ -182,12 +182,6 @@
     <p> اولین نفری باشید که نظر میدهید! </p>
   </div>
 {% endfor %}
-
-{% comment %} <form method='Post' action="{% url 'blog:single' pid=post.id %}">
-  {% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Send</button>
-</form> {% endcomment %}
 
 <div class="col-lg-5 ms-lg-auto ms-lg-0 ms-auto">
   <h3 class="h3 mb-4">ثبت نظر</h3>
