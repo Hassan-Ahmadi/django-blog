@@ -49,12 +49,7 @@ INSTALLED_APPS = [
     "compressor",
 ]
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
-    'compressor.finders.CompressorFinder',
-)
+
 
 # ROBOTS
 ROBOTS_USE_HOST = True
@@ -105,7 +100,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
+    'django.middleware.gzip.GZipMiddleware',  
+    
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+
     # if MAINTENANCE_MODE is True redirects all requests to maintenance page
     "website.middleware.MaintenanceModeMiddleware",
 ]
