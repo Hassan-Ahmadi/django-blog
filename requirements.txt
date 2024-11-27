@@ -23,3 +23,5 @@ pyparsing
 pydot
 
 django-debug-toolbar==3.2.1
+
+gunicorn
