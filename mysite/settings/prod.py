@@ -11,11 +11,11 @@ SECRET_KEY = config(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool, default=False)
+DEBUG = config("DEBUG", False, cast=bool)
 
 MAINTENANCE_MODE = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ezmove.ir', 'localhost']
 
 # to let djnago know what is the real domain name
 # 2 is the id of localhost
@@ -26,17 +26,17 @@ SITE_ID = 2
 
 DATABASES = {
     "default": {
-        "ENGINE": config("DB_ENGINE", default="django.db.backends.postgresql"),
-        "NAME": config("DB_NAME", default="postgres"),
-        "USER": config("DB_USER", default="postgres"),
-        "PASSWORD": config("DB_PASSWORD", default="postgres"),
-        "HOST": config("DB_HOST", defalut="localhost"),
-        "PORT": config("DB_PORT", default="5432"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST", "localhost"),
+        "PORT": config("DB_PORT", 5432, cast=int),
     }
 }
 
 STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_ROOT = BASE_DIR / "media"
 
